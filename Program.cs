@@ -141,7 +141,7 @@ namespace JiraToGitHubIssues
 			Console.WriteLine($"Pushing \"{issue.Title}\"...");
 
 			File.WriteAllText(issue.BodyFilename, issue.Body);
-			string CreateCmd = $"issue create --title \"{issue.Title}\" --body-file \"{issue.BodyFilename}\" -R \"{_repoName}\"";
+			string CreateCmd = $"issue create --title \"{issue.Title}\" --label \"{issue.Label}\" --body-file \"{issue.BodyFilename}\" -R \"{_repoName}\"";
 			string IssueUrl = GitHubCliCaller.RunCommand(CreateCmd).Replace("\n", "");
 
 			if (IssueUrl == null || IssueUrl.Length == 0)
